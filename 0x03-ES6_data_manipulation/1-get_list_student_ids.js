@@ -1,6 +1,6 @@
 export default function getStudentIds(students) {
   if (!Array.isArray(students)) {
-    throw new Error('Invalid argument. Expected an array.');
+    return [];
   }
 
   return students.map((student) => student.id);
