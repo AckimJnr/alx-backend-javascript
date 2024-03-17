@@ -1,12 +1,13 @@
 function cleanSet(set, startString) {
-  if (!startString) {
-    return ''; // Return an empty string if startString is empty
+  if (!startString || !set || !(set instanceof Set)) {
+    throw new Error('Invalid input. Please provide a non-empty startString and a Set.');
   }
 
-  return Array.from(set)
-    .filter((value) => value.startsWith(startString))
-    .map((value) => value.slice(startString.length))
-    .join('-');
+  const cleanedValues = Array.from(set)
+    .filter(value => typeof value === 'string' && value.startsWith(startString))
+    .map(value => value.slice(startString.length));
+
+  return cleanedValues.join('-');
 }
 
 export default cleanSet;
