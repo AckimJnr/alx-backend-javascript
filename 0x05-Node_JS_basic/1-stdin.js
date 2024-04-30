@@ -5,9 +5,9 @@ process.stdin.on('data', (data) => {
   const name = data.trim();
   if (name) {
     console.log('Your name is:', name);
+    process.exit();
   }
   process.stdin.on('end', () => {
     console.log('This important software is now closing');
   });
-  process.exit();
 });
