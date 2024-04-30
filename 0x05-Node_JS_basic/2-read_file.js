@@ -14,14 +14,14 @@ function countStudents(path) {
     // Count students in each field
     const fields = {};
     students.forEach((student) => {
-      const field = student[3];
+      const field = student[3]; // Assuming the field is always at index 3
       if (!fields[field]) {
         fields[field] = [];
       }
-      fields[field].push(student[0]);
+      fields[field].push(student[0]); // Assuming the first column contains first names
     });
 
-    console.log('Number of students:', nonEmptyLines.length);
+    console.log('Number of students:', nonEmptyLines.length - 1);
     for (const field in fields) {
       if (Object.prototype.hasOwnProperty.call(fields, field)) {
         const studentCount = fields[field].length;
