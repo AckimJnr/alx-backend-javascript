@@ -5,7 +5,7 @@ const countStudents = require('./3-read_file_async');
 const port = 1245;
 
 const app = http.createServer((req, res) => {
-  const url = new URL(`http://localhost:${port}${req.url}`);
+  const url = new URL(req.url, `http://localhost:${port}`);
 
   res.setHeader('Content-Type', 'text/plain');
 
@@ -13,16 +13,16 @@ const app = http.createServer((req, res) => {
     res.statusCode = 200;
     res.end('Hello Holberton School!');
   } else if (url.pathname === '/students') {
-    const databasePath = url.searchParams.get('database');
+    const databasePath = process.argv[2];
     if (!databasePath) {
       res.statusCode = 400;
       res.end('Error: Missing database path');
       return;
     }
     countStudents(databasePath)
-      .then(() => {
+      .then((message) => {
         res.statusCode = 200;
-        res.end('This is the list of our students\n');
+        res.end(`This is the list of our students\n${message}`);
       })
       .catch((error) => {
         res.statusCode = 500;
