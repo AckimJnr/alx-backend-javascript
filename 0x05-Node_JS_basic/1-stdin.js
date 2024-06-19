@@ -9,12 +9,12 @@ const rl = readline.createInterface({
 console.log('Welcome to Holberton School, what is your name?');
 
 rl.question('', (name) => {
-  console.log(`Your name is: ${name.trim()}`);
+  console.log(`Your name is: ${name.trim()}\r`);
 
   if (!process.stdin.isTTY) {
     console.log('This important software is now closing');
   }
 
   rl.close();
-  process.exit();
+  setTimeout(() => process.exit(), 100);
 });
